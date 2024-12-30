@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualizações Interativas - Olimpíadas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div class="page_inicial_container">
+      <div class="alunos_container">
+        <h4>7570 - Camille Custódio de Paiva</h4>
+        <h4>6317 - Eliezer Assunção de Paulo</h4>
+      </div>
+      <h1>Visualizações Interativas - Olimpíadas</h1>
+      <p class="descricao">
+        Este projeto foi criado como parte da disciplina de Visualização de
+        Interações. Escolha uma das opções abaixo para explorar a visualização
+        de forma interativa:
+      </p>
+
+      <div class="cards_container">
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="asserts/medalhas.jpg"
+            alt="Imagem de capa do card"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Análise de Medalhas por País e Esporte</h5>
+            <p class="card-text">
+              Explore o total de medalhas por país e veja detalhes dos atletas
+              ao selecionar um esporte.
+            </p>
+            <a href="visualizações/medalhas.html" class="btn">Visualizar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="asserts/medidas.jpg"
+            alt="Imagem de capa do card"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Análise Altura x Peso de Atletas</h5>
+            <p class="card-text">
+              Compare altura e peso dos atletas por ano,destaques para esportes
+              e características extremas.
+            </p>
+            <button class="btn">Visualizar</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="asserts/países.jpg"
+            alt="Imagem de capa do card"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Evolução de Atletas e Medalhas por País</h5>
+            <p class="card-text">
+              Explore a relação entre atletas e medalhas ao longo dos anos em
+              uma animação interativa.
+            </p>
+            <button class="btn">Visualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
