@@ -20,6 +20,25 @@ const xAxis = svg
 
 const yAxis = svg.append("g").attr("transform", `translate(${margin.left},0)`);
 
+// Adicionando a descrição do eixo X
+svg
+  .append("text")
+  .attr("x", width / 2)
+  .attr("y", height - margin.bottom + 30)
+  .attr("text-anchor", "middle")
+  .style("font-size", "16px")
+  .text("Total de Atletas");
+
+// Adicionando a descrição do eixo Y
+svg
+  .append("text")
+  .attr("x", -height / 2)
+  .attr("y", margin.left - 40)
+  .attr("transform", "rotate(-90)")
+  .attr("text-anchor", "middle")
+  .style("font-size", "16px")
+  .text("Total de Medalhas");
+
 // Função para carregar e processar os dados
 function loadData() {
   d3.csv("/data/dataset_limpo.csv").then((data) => {
@@ -103,7 +122,21 @@ function loadData() {
       // Função de animação para mover as bolinhas
       const interval = setInterval(function () {
         if (currentYearIndex >= years.length) {
-          currentYearIndex = 0; // Reinicia a animação quando atingir o final
+          // Reinicia as bolinhas para a posição inicial e espera 2 segundos
+          circles.transition().duration(1000).style("opacity", 0);
+          setTimeout(() => {
+            // Reseta as posições das bolinhas para o início e reinicia a animação
+            circles
+              .attr("cx", xScale(0))
+              .attr("cy", yScale(0))
+              .transition()
+              .duration(1000)
+              .style("opacity", 1);
+
+            currentYearIndex = 0; // Reinicia o índice
+            yearText.text(`Ano: ${years[currentYearIndex]}`); // Atualiza o texto do ano
+          }, 2000);
+          return;
         }
 
         const yearData = stats.filter(
@@ -123,7 +156,7 @@ function loadData() {
         yearText.text(`Ano: ${years[currentYearIndex]}`);
 
         currentYearIndex++;
-      }, 2000); // Atualiza a posição a cada 2 segundos
+      }, 1000); // Atualiza a posição a cada 2 segundos
     }
 
     // Iniciar a animação
