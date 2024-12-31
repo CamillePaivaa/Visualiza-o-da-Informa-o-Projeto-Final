@@ -1,5 +1,5 @@
 // Carregar os dados
-d3.csv("dataset_limpo.csv").then((data) => {
+d3.csv("/data/dataset_limpo.csv").then((data) => {
   // Processar os dados
   const medalData = d3.group(
     data,

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualização de Medalhas</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="/visualizações/styles.css" />
+  </head>
+  <body>
+    <div class="titulo">
+      <h1>Total de Medalhas por País</h1>
+      <div>
+        <label for="sport-dropdown">Escolha um esporte:</label>
+        <select id="sport-dropdown" class="dropdow"></select>
+      </div>
+    </div>
+
+    <div class="chart">
+      <svg class="bar-chart"></svg>
+      <div class="details">
+        <h2>Atletas</h2>
+        <ul id="athlete-list"></ul>
+        <div id="athlete-container">
+          <ul id="athlete-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tooltip" style="opacity: 0"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
