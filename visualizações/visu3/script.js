@@ -1,7 +1,7 @@
 // Definindo as dimensões do gráfico
-const width = 800;
-const height = 400;
-const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+const width = 900;
+const height = 600;
+const margin = { top: 70, right: 20, bottom: 40, left: 60 };
 
 // Criação do SVG dentro do contêiner da scatterplot
 const svg = d3
