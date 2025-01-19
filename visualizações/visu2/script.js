@@ -1,15 +1,12 @@
 d3.csv("/data/dataset_limpo.csv").then((data) => {
-  // Processar os dados: converte altura, peso e ano para números
   data.forEach((d) => {
     d.Height = +d.Height;
     d.Weight = +d.Weight;
     d.Year = +d.Year;
   });
 
-  // Extrair os anos únicos
   const years = Array.from(new Set(data.map((d) => d.Year))).sort();
 
-  // Popula o dropdown com os anos
   const dropdown = d3.select("#year-dropdown");
   dropdown
     .selectAll("option")
@@ -18,21 +15,17 @@ d3.csv("/data/dataset_limpo.csv").then((data) => {
     .text((d) => d)
     .attr("value", (d) => d);
 
-  // Inicializa com o primeiro ano
   const initialYear = years[0];
   updateScatterplot(initialYear);
 
-  // Atualiza o gráfico ao mudar o ano
   dropdown.on("change", function () {
     const selectedYear = +this.value;
     updateScatterplot(selectedYear);
   });
 
   function updateScatterplot(selectedYear) {
-    // Filtra os dados pelo ano selecionado
     const filteredData = data.filter((d) => d.Year === selectedYear);
 
-    // Verifica os atletas com maior/menor altura e peso
     const maxHeight = d3.max(filteredData, (d) => d.Height);
     const maxWeight = d3.max(filteredData, (d) => d.Weight);
     const minHeight = d3.min(filteredData, (d) => d.Height);
@@ -45,7 +38,6 @@ d3.csv("/data/dataset_limpo.csv").then((data) => {
 
     svg.attr("width", width).attr("height", height);
 
-    // Escalas
     const x = d3
       .scaleLinear()
       .domain([d3.min(filteredData, (d) => d.Weight) - 5, maxWeight + 5])
@@ -56,7 +48,6 @@ d3.csv("/data/dataset_limpo.csv").then((data) => {
       .domain([d3.min(filteredData, (d) => d.Height) - 5, maxHeight + 5])
       .range([height - margin.bottom, margin.top]);
 
-    // Eixos
     svg.selectAll(".x-axis").remove();
     svg.selectAll(".y-axis").remove();
 
@@ -72,7 +63,6 @@ d3.csv("/data/dataset_limpo.csv").then((data) => {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y));
 
-    // Adiciona os pontos
     const circles = svg.selectAll(".circle").data(filteredData);
 
     circles
@@ -106,11 +96,9 @@ d3.csv("/data/dataset_limpo.csv").then((data) => {
         d3.select(".tooltip").style("opacity", 0);
       });
 
-    // Limpa legendas anteriores e cria novas
     svg.selectAll(".legend").remove();
     addLegend(svg, width, margin);
 
-    // Identificar os esportes com atletas de mesmo peso/altura
     const duplicates = filteredData.filter(
       (d, i, arr) =>
         arr.findIndex(
